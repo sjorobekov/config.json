@@ -71,4 +71,14 @@ describe('config.json', function () {
             args: ['--foo', 'qux']
         });
     });
+
+    it('should use passed environment configuration file', function(done){
+        var testFile = path.join(__dirname, 'fixtures', 'complex', 'test-passed-env.js');
+        run(complex, function (foo) {
+            assert.equal(foo, 'bar');
+            done();
+        }, {
+            env: { NODE_ENV: 'development' }
+        });
+    });
 });
